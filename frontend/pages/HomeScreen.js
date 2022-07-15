@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
-import products from '../public/products'
+// import products from '../public/products'
+import moduleName from 'axios'
+import axios from 'axios'
 // import Loader from '../components/Loader'
 // import Message from '../components/Message'
 // import Paginate from '../components/Paginate'
@@ -11,6 +13,7 @@ import products from '../public/products'
 
 
 function HomeScreen({ history }) {
+    const [products, setProducts] = useState([])
     // const dispatch = useDispatch()
     // const productList = useSelector(state => state.productList)
     // const { error, loading, products, page, pages } = productList
@@ -19,10 +22,15 @@ function HomeScreen({ history }) {
     let loading = false;
     let keyword = false;
     let error = false;
-    // useEffect(() => {
-    //     dispatch(listProducts(keyword))
+    useEffect(() => {
+        async function fetchProducts(){
+            const {data}= await axios.get("api/productlist")
 
-    // }, [dispatch, keyword])
+            setProducts(data)
+        }
+        fetchProducts()
+
+    }, [])
 
     return (
         <div>

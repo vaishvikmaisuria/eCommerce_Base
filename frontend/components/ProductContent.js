@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import product from "../public/products";
+import React, { useEffect, useState } from "react";
 import NextLink from "next/link";
 import {
   Card,
@@ -12,23 +11,40 @@ import {
 } from "react-bootstrap";
 import Rating from "./Rating";
 import Link from "next/link";
+import axios from "axios";
 
 function ProductContent({ productId }) {
   let [qty, setQty] = useState(1);
   let [rating, setRating] = useState(0);
   let [comment, setComment] = useState("");
-  let productDetail = product.find((p) => p._id == String(productId));
+
+  const [productDetail, setProductDetail] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data } = await axios.get('/api/productid', {
+        params: {
+          pid: productId
+        }
+      });
+
+      setProductDetail(data);
+    }
+    fetchProducts();
+  }, []);
+
   const addToCartHandler = () => {
     console.log("Added to cart");
     // history.push(`/cart/${match.params.id}?qty=${qty}`)
   };
+
   return (
-    <div >
+    <div>
       <NextLink href="/" passHref>
         <button className="btn btn-light my-3">Go Back</button>
       </NextLink>
 
-      <Row className='text-center'>
+      <Row className="text-center">
         <Col md={6}>
           <Image src={productDetail.image} alt={productDetail.name} fluid />
         </Col>
