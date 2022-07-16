@@ -1,36 +1,29 @@
 import React, { useState, useEffect } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
-// import products from '../public/products'
-import moduleName from 'axios'
-import axios from 'axios'
-// import Loader from '../components/Loader'
-// import Message from '../components/Message'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 // import Paginate from '../components/Paginate'
 // import ProductCarousel from '../components/ProductCarousel'
-// import { listProducts } from '../actions/productActions'
+import { listProducts } from '../actions/productActions'
 
 
 function HomeScreen({ history }) {
-    const [products, setProducts] = useState([])
-    // const dispatch = useDispatch()
-    // const productList = useSelector(state => state.productList)
-    // const { error, loading, products, page, pages } = productList
+
+    const dispatch = useDispatch()
+    const productList = useSelector(state => state.productList)
+    let { error, loading, products, page, pages } = productList
 
     // let keyword = history.location.search
-    let loading = false;
+
     let keyword = false;
-    let error = false;
+
+
     useEffect(() => {
-        async function fetchProducts(){
-            const {data}= await axios.get("api/productlist")
+        dispatch(listProducts())
 
-            setProducts(data)
-        }
-        fetchProducts()
-
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
@@ -42,7 +35,7 @@ function HomeScreen({ history }) {
                     :
                     <div>
                         <Row>
-                            {products.map(product => (
+                            {products && products.map(product => (
                                 <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                                     <Product product={product} />
                                 </Col>
