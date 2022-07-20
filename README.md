@@ -21,5 +21,9 @@ Full eCommerce website from the ground up with React (NextJS), Redux, Django &am
 
 
 # Install react modules
-* 1 - cd frontend
-* 2 - npm install
+* 1. cd frontend
+* 2. npm install
+
+# Start Python server
+* 1. start the environment - source myenv/bin/activate
+* 2. start the server - python manage.py runserver

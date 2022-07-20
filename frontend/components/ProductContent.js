@@ -14,13 +14,15 @@ import Rating from "./Rating";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
+import { useRouter } from 'next/router'
+import Header from '../components/Header'
 
 function ProductContent({ productId }) {
   let [qty, setQty] = useState(1);
   let [rating, setRating] = useState(0);
   let [comment, setComment] = useState("");
   const dispatch = useDispatch();
-
+  const router = useRouter()
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
@@ -31,13 +33,22 @@ function ProductContent({ productId }) {
     fetchProducts();
   }, [dispatch, productId ]);
 
-  const addToCartHandler = () => {
-    console.log("Added to cart");
-    // history.push(`/cart/${match.params.id}?qty=${qty}`)
+  const addToCartHandler = (e) => {
+    e.preventDefault()
+    console.log("Added to cart", productId);
+
+      // router.push(`/cart?pid=${productId}&?qty=${qty}`)
+
+    router.push({
+        pathname: '/cart',
+        query: { id: productId, qty: qty },
+
+      });
   };
 
   return (
     <div>
+      <Header/>
       <NextLink href="/" passHref>
         <button className="btn btn-light my-3">Go Back</button>
       </NextLink>
