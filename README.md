@@ -27,3 +27,7 @@ Full eCommerce website from the ground up with React (NextJS), Redux, Django &am
 # Start Python server
 * 1. start the environment - source myenv/bin/activate
 * 2. start the server - python manage.py runserver
+
+# Authentication
+1. Json web token -> jwt.io
+2. djangorestframework-simplejwt -> https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
