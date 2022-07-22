@@ -1,5 +1,5 @@
 import React from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap'
 import {
     FaShoppingCart,
@@ -7,21 +7,22 @@ import {
   } from "react-icons/fa";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
-// import { LinkContainer } from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 // import SearchBox from './SearchBox'
-// import { logout } from '../actions/userActions'
+import { logout } from '../actions/userActions';
+
 
 function Header() {
     const router = useRouter();
-    // const userLogin = useSelector(state => state.userLogin)
-    // const { userInfo } = userLogin
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // const logoutHandler = () => {
-    //     dispatch(logout())
-    // }
-    let userInfo = false
+    const logoutHandler = () => {
+
+        dispatch(logout())
+    }
 
 
     return (
@@ -35,10 +36,10 @@ function Header() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         {/* <SearchBox /> */}
-                        <Nav className="ml-auto">
+                        <Nav className="ml-auto" >
 
-                            <NextLink href='/cart' passHref>
-                                <Nav.Link ><FaShoppingCart/>Cart</Nav.Link>
+                            <NextLink  href='/cart' passHref>
+                                <Nav.Link  className="nav-item" ><FaShoppingCart/>Cart</Nav.Link>
                             </NextLink>
 
                             {userInfo ? (
@@ -47,7 +48,7 @@ function Header() {
                                         <NavDropdown.Item>Profile</NavDropdown.Item>
                                     </NextLink>
 
-                                    <NavDropdown.Item onClick={() => {console.log("logout")}}>Logout</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
 
                                 </NavDropdown>
                             ) : (
