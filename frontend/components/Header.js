@@ -7,7 +7,7 @@ import {
   } from "react-icons/fa";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
-import { LinkContainer } from 'react-router-bootstrap'
+
 // import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions';
 
