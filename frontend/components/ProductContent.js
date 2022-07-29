@@ -35,7 +35,6 @@ function ProductContent({ productId }) {
 
   const addToCartHandler = (e) => {
     e.preventDefault()
-    console.log("Added to cart", productId);
 
       // router.push(`/cart?pid=${productId}&?qty=${qty}`)
 

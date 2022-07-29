@@ -4,7 +4,7 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   // const { data } = await axios.get(`/api/products/${id}`)
-  console.log("addToCart error:", id)
+
   const { data } = await axios.get("/api/productid", {
     params: {
       pid: id,
