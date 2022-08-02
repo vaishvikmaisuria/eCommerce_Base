@@ -30,3 +30,7 @@ a {
   align-items: center;
   flex-grow: 1;
 }
+
+.buttonIcon {
+  margin-right: 3px;
+}

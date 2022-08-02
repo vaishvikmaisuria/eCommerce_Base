@@ -7,17 +7,17 @@ import {
     Container,
 } from "react-bootstrap";
 
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import FormContainer from "../components/FormContainer";
+import Loader from "./Loader";
+import Message from "./Message";
+import FormContainer from "./FormContainer";
 
 import { useRouter } from "next/router";
-import Header from "../components/Header";
+import Header from "./Header";
 
 import { getUserDetails, updateUser } from "../actions/userActions";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
-function EditorContent({ userId }) {
+function UserEditorContent({ userId }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
@@ -122,4 +122,4 @@ function EditorContent({ userId }) {
     );
 }
 
-export default EditorContent;
+export default UserEditorContent;

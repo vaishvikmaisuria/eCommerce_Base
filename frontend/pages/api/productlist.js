@@ -6,7 +6,6 @@ export default async function handler(req, res) {
         productList= await axios.get('http://127.0.0.1:8000/api/products/')
 
         let {data} = productList
-
         res.status(200).json(data)
     }
 }

@@ -1,15 +1,15 @@
-import EditorContent from "../../../components/EditorContent";
+import ProductEditorContent from "../../../../components/ProductEditorContent";
 
 function userEditPage(props) {
 
     return (
-      <EditorContent userId={props.user}/>
+      <ProductEditorContent productId={props.product}/>
     )
 }
 
 export function getStaticProps(context) {
     const { params } = context;
-    const { user_id } = JSON.parse(JSON.stringify(params));
+    const { product_id } = JSON.parse(JSON.stringify(params));
 
     // checkCacheData(symbol)
     // getStockData(symbol)
@@ -21,7 +21,7 @@ export function getStaticProps(context) {
 
     return {
         props: {
-            user: user_id,
+            product: product_id,
         },
         // fetching for a single post every 500 mins
         revalidate: 300000,

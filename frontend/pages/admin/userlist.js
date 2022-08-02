@@ -85,7 +85,7 @@ export default function UserListScreen() {
 
                                         <td>
                                             <Link
-                                                href={`/admin/edit/${user._id}/`}
+                                                href={`/admin/edit/user/${user._id}/`}
                                             >
                                                 <Button
                                                     variant="light"

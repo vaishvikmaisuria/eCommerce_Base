@@ -170,3 +170,72 @@ export const listMyOrders = () => async (dispatch, getState) => {
     }
 };
 
+export const listOrders = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: ORDER_LIST_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const { data } = await axios.get(
+            `/api/listallorders/`,
+            {
+                params: {
+                    userInfo: userInfo.token,
+                }
+            }
+        )
+
+        dispatch({
+            type: ORDER_LIST_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: ORDER_LIST_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+export const deliverOrder = (order) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: ORDER_DELIVER_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+
+        const { data } = await axios.get(
+            `/api/deliverorder/`,
+            { params: {
+                oid: order._id,
+                userInfo: userInfo.token
+            }},
+        )
+
+        dispatch({
+            type: ORDER_DELIVER_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: ORDER_DELIVER_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
