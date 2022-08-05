@@ -31,3 +31,7 @@ Full eCommerce website from the ground up with React (NextJS), Redux, Django &am
 # Authentication
 1. Json web token -> jwt.io
 2. djangorestframework-simplejwt -> https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
+
+
+# AWS S3 Image Storage
+link -> https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html

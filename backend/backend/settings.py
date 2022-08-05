@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from pickle import FALSE
+from unittest.mock import DEFAULT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,6 +130,17 @@ DATABASES = {
     }
 }
 
+#  for Postgres Database setup
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sequoia',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password1234',
+#         'HOST': 'localhost',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -184,8 +197,20 @@ CORS_ALLOWED_ALL_ORIGINS = True
 
 STATICFILES_DIR = [
     BASE_DIR / 'static'
+    # If you want django to serve the react build
+    # BASE_DIR / 'frontend/build/static'
 ]
 
 MEDIA_ROOT = 'static/images'
 
 MEDIA_URL = '/images/'
+
+
+# AWS S3 Bucket for storing images
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S#Boto3Storage'
+# AWS_ACCESS_KEY_ID =
+# AWS_SECRET_ACCESS_KEY =
+# AWS_STORAGE_BUCKET_NAME =
+
+# Hide AWS credentials
+# AWS_QUERYSTRING_AUTH = False
