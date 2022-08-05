@@ -6,3 +6,5 @@ djangorestframework-simplejwt
 psycopg2
 boto3
 django-storage
+whitenoise
+gunicorn

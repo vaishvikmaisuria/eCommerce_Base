@@ -53,7 +53,7 @@ function OrderContent({ orderId }) {
         const script = document.createElement("script");
         script.type = "text/javascript";
         script.src =
-            "https://www.paypal.com/sdk/js?client-id=AeZp1cFn_XkX_ldeACCnF_pOhmzk9wt1Il-E0yKIe1_8IsiJGho_TVOcIoNsVRkeQl4Qe0rhDEx9xPr8";
+            "https://www.paypal.com/sdk/js?client-id=AefAkeFn_XkX_ldeACCNT_pOhvsMaKel-E0y0Ure1_8IsiOwnGho_TVOacountIoNsVRkeQl4Qe0rhDEx9xPr8";
         script.async = true;
         script.onload = () => {
             setSdkReady(true);

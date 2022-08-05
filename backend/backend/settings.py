@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta
 from pickle import FALSE
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-$4nrzo3j5xto=e%76ps%mnemeki9gt_1o0k+ziv=-no-l)5^f4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -89,6 +89,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -201,7 +202,10 @@ STATICFILES_DIR = [
     # BASE_DIR / 'frontend/build/static'
 ]
 
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+
+# IN PRODUCTION after running python manage.py collectstatic
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/images/'
 
@@ -214,3 +218,10 @@ MEDIA_URL = '/images/'
 
 # Hide AWS credentials
 # AWS_QUERYSTRING_AUTH = False
+
+
+if os.getcwd() == '/app':
+    # force redirect to https if you have valid cert
+    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # SECURE_SSL_REDIRECT = True
+    DEBUG = False
