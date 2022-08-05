@@ -8,7 +8,7 @@ import {
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 
-// import SearchBox from './SearchBox'
+import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions';
 
 
@@ -35,7 +35,7 @@ function Header() {
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        {/* <SearchBox /> */}
+                        <SearchBox />
                         <Nav className="ml-auto" >
 
                             <NextLink  href='/cart' passHref>

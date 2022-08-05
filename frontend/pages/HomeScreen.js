@@ -4,32 +4,33 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-// import Paginate from '../components/Paginate'
-// import ProductCarousel from '../components/ProductCarousel'
+import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../actions/productActions'
+import { useRouter } from 'next/router'
 
 
-function HomeScreen({ history }) {
+function HomeScreen() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const router = useRouter();
+
     const productList = useSelector(state => state.productList)
     let { error, loading, products, page, pages } = productList
 
-    // let keyword = history.location.search
-
-    let keyword = false;
-
+    let keyword = router.query.keyword
+    let pageNum = router.query.page
 
     useEffect(() => {
-        dispatch(listProducts())
+        dispatch(listProducts(keyword, pageNum))
 
-    }, [dispatch])
+    }, [dispatch, keyword, pageNum])
 
     return (
         <div>
-            {/* {!keyword && <ProductCarousel />} */}
+            {!keyword && <ProductCarousel />}
 
-            <h1>Latest Products</h1>
+            <h1 className='mt-3'>Latest Products</h1>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     :
@@ -41,7 +42,7 @@ function HomeScreen({ history }) {
                                 </Col>
                             ))}
                         </Row>
-                        {/* <Paginate page={page} pages={pages} keyword={keyword} /> */}
+                        <Paginate page={page} pages={pages} keyword={keyword} />
                     </div>
             }
         </div>

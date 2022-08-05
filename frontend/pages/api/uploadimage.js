@@ -43,9 +43,9 @@
 //             formData,
 //             config
 //         );
-//         console.log("Fuck!!")
+
 //         // // data.pipe(res);
-//         // let data = { lol: "fuck" };
+//         // let data = { lol: "ducks are cute" };
 
 //         res.status(200).json({ data });
 //     } else {
@@ -131,7 +131,7 @@
 //         //     config
 //         // );
 
-//         let data = {"data": "Fuck"}
+//         let data = {"data": "holy not working"}
 //         console.log("lol you got here ")
 //         // const response = await axios.post(
 //         //     `http://127.0.0.1:8000/api/products/upload/`,dataForm, config

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Header from "../../components/Header";
-// import Paginate from "../../components/Paginate";
+import Paginate from "../../components/Paginate";
 import { listProducts, deleteProduct, createProduct } from "../../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 import { FaEdit, FaTrashAlt, FaCheck, FaPlus } from "react-icons/fa";
@@ -15,8 +15,11 @@ export default function ProductListScreen() {
     const dispatch = useDispatch();
     let router = useRouter();
 
+    let keyword = router.query.keyword
+    let pageNum = router.query.page
+
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    let { error, loading, products, page, pages } = productList
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -38,7 +41,7 @@ export default function ProductListScreen() {
         if (successCreate) {
             router.push(`/admin/edit/product/${createdProduct._id}/`)
         } else {
-            dispatch(listProducts())
+            dispatch(listProducts(keyword, pageNum))
         }
 
 
@@ -155,11 +158,11 @@ export default function ProductListScreen() {
                                     ))}
                                 </tbody>
                             </Table>
-                            {/* <Paginate
+                            <Paginate
                                 pages={pages}
                                 page={page}
                                 isAdmin={true}
-                            /> */}
+                            />
                         </div>
                     )}
                 </Container>
